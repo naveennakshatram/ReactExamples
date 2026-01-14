@@ -1,37 +1,28 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
 
-function AddCartItem() {
-  //   const cartItems = useLocation().state;
-  // The array we get from location.state is read-only — React Router does not let you mutate it directly.
-
-  //   So passing the location state as a default parameter to cartItems so we can edit the cart Items array by adding new objects to it.
-  const [cartItems, setCartItems] = useState(location.state || []);
-
+function AddCartItem({newItem,cartItems}) {
+  
   const [productName, setProductName] = useState("");
   const [productPrice, setProductPrice] = useState("");
-  const [productImage, setProductImage] = useState(null);
+  const [productImage, setProductImage] = useState("");
 
   function addProductToCart() {
     if (!productName || !productPrice || !productImage) {
       return alert("Please fill all fields!");
     }
-
-    cartItems.map((item) => [...item]);
-
-    const newItem = {
+ 
+    newItem({
       id: Date.now(),
       name: productName,
       price: parseFloat(productPrice),
       image: productImage,
-    };
+    });
 
-    setCartItems([...cartItems, newItem]);
-
+    
     // Reset form
     setProductName("");
     setProductPrice("");
-    setProductImage(null);
+    setProductImage("");
   }
 
   return (

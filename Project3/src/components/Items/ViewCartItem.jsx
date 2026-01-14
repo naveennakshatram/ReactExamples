@@ -1,9 +1,6 @@
-import { useLocation } from "react-router-dom";
 
-function ViewCartItem() {
-  const location = useLocation();
-  const cartItems = location.state; // data sent from Home
-
+function ViewCartItem({cartItems}) {
+  
   return (
     <>
       <div className="p-8 flex flex-col gap-4">
